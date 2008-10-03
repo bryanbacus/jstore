@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbAccountPay" lazy="false" table="sm_tb_account_pay">
+	<id
+        name="index"
+        type="integer"
+        column="index"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="createDate"
+        type="timestamp"
+        column="create_date"
+        length="19"
+    />
+	<property
+        name="modifyDate"
+        type="timestamp"
+        column="modify_date"
+        length="19"
+    />
+	<property
+        name="payed"
+        type="integer"
+        column="payed"
+        not-null="true"
+        length="11"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount1"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+    >
+		<column name="modify_user" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount2"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+    >
+		<column name="user_id" not-null="true" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount3"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+    >
+		<column name="create_user" not-null="true" length="11"/>
+	</many-to-one>
+
+</class>
+</hibernate-mapping>

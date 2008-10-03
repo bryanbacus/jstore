@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbSaleItemLog" lazy="false" table="sm_tb_sale_item_log">
+	<id
+        name="idx"
+        type="integer"
+        column="idx"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="createDate"
+        type="date"
+        column="create_date"
+        length="10"
+    />
+	<property
+        name="itemLog"
+        type="string"
+        column="item_log"
+        length="200"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+    >
+		<column name="create_user" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbSaleItem -->
+	<many-to-one
+        name="smTbSaleItem"
+        class="com.shenming.sms.module.hibernateOrm.SmTbSaleItem"
+        lazy="false"
+    >
+		<column name="item_seq" not-null="true" length="11"/>
+	</many-to-one>
+
+</class>
+</hibernate-mapping>

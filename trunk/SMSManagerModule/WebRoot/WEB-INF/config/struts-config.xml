@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+<!-- ================================================ Form Bean Definitions -->
+
+    <form-beans>
+    	<form-bean name="managerLoginForm"
+    		type="com.shenming.sms.struts.form.ManagerLoginForm"/>
+    	<form-bean name="vipAccountForm" 
+    		type="com.shenming.sms.struts.form.VipAccountForm"/>
+    	<form-bean name="TestForm" type="com.shenming.sms.struts.form.TestForm"/>
+    	<form-bean name="queryVipForm" type="com.shenming.sms.struts.form.QueryVipForm"/>
+    	<form-bean name="vipChildForm" type="com.shenming.sms.struts.form.VipChildForm"/>
+    	<form-bean name="productForm" type="com.shenming.sms.struts.form.ProductForm"/>
+    	<form-bean name="queryProductForm" type="com.shenming.sms.struts.form.QueryProductForm"/>
+    	<form-bean name="uploadPictureForm" type="com.shenming.sms.struts.form.UploadPictureForm"/>
+    	<form-bean name="orderForm" type="com.shenming.sms.struts.form.OrderForm"/>
+    	<form-bean name="queryOrderForm" type="com.shenming.sms.struts.form.QueryOrderForm"/>
+    	<form-bean name="smsSenderForm" type="com.shenming.sms.struts.form.SmsSenderForm"/>
+    	<form-bean name="querySmsHistoryForm" type="com.shenming.sms.struts.form.QuerySmsHistoryForm"/>
+    	<form-bean name="manageProductGrpForm" type="com.shenming.sms.struts.form.ManageProductGrpForm"/>
+    </form-beans>
+
+
+<!-- ========================================= Global Exception Definitions -->
+
+    <global-exceptions>
+        <!-- sample exception handler
+        <exception
+            key="expired.password"
+            type="app.ExpiredPasswordException"
+            path="/changePassword.jsp"/>
+        end sample -->
+    </global-exceptions>
+
+
+<!-- =========================================== Global Forward Definitions -->
+
+    <global-forwards>
+        <!-- Default forward to "Welcome" action -->
+        <!-- Demonstrates using index.jsp to forward -->
+        <forward
+            name="welcome"
+            path="/Welcome.do"/>
+        <forward
+            name="main"
+            path="/main.jsp"/>
+        <forward
+            name="message"
+            path="/main.jsp?page=message"/>
+    </global-forwards>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+            <!-- Default "Welcome" action -->
+            <!-- Forwards to welcome.jsp -->
+        <action
+            path="/Welcome"
+            forward="/pages/welcome.jsp"/>
+
+    <!-- sample input and input submit actions
+
+        <action
+            path="/Input"
+            type="org.apache.struts.actions.ForwardAction"
+            parameter="/pages/Input.jsp"/>
+
+        <action
+            path="/InputSubmit"
+            type="app.InputAction"
+            name="inputForm"
+            scope="request"
+            validate="true"
+            input="/pages/Input.jsp"/>
+
+            <action
+                path="/edit*"
+                type="app.Edit{1}Action"
+                name="inputForm"
+                scope="request"
+                validate="true"
+                input="/pages/Edit{1}.jsp"/>
+
+    end samples -->
+    
+    <!-- Manager -->
+        <action path="/manager/loginAction" 
+        	type="com.shenming.sms.struts.action.ManagerLoginAction" 
+        	name="managerLoginForm" scope="session" 
+        	validate="true" input="/main.jsp">
+        	<forward name="success" path="/main.jsp?page=welcome"/>
+        	<!-- forward name="message" path="/main.jsp?page=message"/ -->
+        </action>
+        
+        <action path="/manager/manageVipAction" 
+        	type="com.shenming.sms.struts.action.ManageVipAction" 
+        	name="vipAccountForm" scope="request" validate="true" 
+        	input="/manager/createVipUser.jsp">
+        	<forward name="success" path="/main.jsp?fo=manager&amp;page=createVipSuccess"/>
+        	<!-- forward name="message" path="/main.jsp?page=message"/ -->
+        	<forward name="queryResult" path="/message.jsp"/>
+        </action>
+        <action path="/manager/queryVipAction" 
+        	type="com.shenming.sms.struts.action.QueryVipAction" 
+        	name="queryVipForm" scope="request" 
+        	validate="true" input="/manager/queryVipUser.jsp">
+        	<forward name="success" path="/main.jsp?fo=manager&amp;page=queryVipUser"/>
+        	<!-- forward name="message" path="/main.jsp?page=message"/ -->
+        </action>
+        <action path="/testAction" 
+        	type="com.shenming.sms.struts.action.TestAction" name="TestForm" validate="true" input="/test.jsp">
+        	<!-- forward name="message" path="/message.jsp"/ -->
+        </action>
+        <action path="/manager/manageVipChildAction" 
+        	type="com.shenming.sms.struts.action.ManageVipChildAction" 
+        	name="vipChildForm" scope="request" input="/manager/createVipChild.jsp" validate="true">
+        	<forward name="success" path="/main.jsp?fo=manager&amp;page=createVipChild"/>
+        	<!-- forward name="message" path="/main.jsp?page=message"/ -->
+        </action>
+        <action path="/manager/manageProductAction" 
+        	type="com.shenming.sms.struts.action.ManageProductAction" 
+        	name="productForm" scope="request" input="/manager/createProduct.jsp" validate="true">
+        	<forward name="success" path="/main.jsp?fo=manager&amp;page=createProductSuccess"/>
+        </action>
+        <action path="/manager/queryProduct" 
+        	type="com.shenming.sms.struts.action.QueryProductAction" 
+        	name="queryProductForm" scope="request" validate="true" 
+        	input="/manager/queryProduct.jsp">
+        	<forward name="success" path="/main.jsp?fo=manager&amp;page=queryProduct"/>
+        </action>
+        <action path="/manager/uploadPictureAction" 
+        	type="com.shenming.sms.struts.action.UploadPictureAction" 
+        	name="uploadPictureForm" scope="request" 
+        	input="/manager/uploadPicture.jsp">
+        	<forward name="success" path="/main.jsp?fo=manager&amp;page=uploadPicture"/>
+        </action>
+        <action path="/sale/manageOrderAction" 
+        	type="com.shenming.sms.struts.action.ManageOrderAction" 
+        	name="orderForm" scope="request" 
+        	validate="true" input="/sale/createOrder.jsp">
+        	<forward name="success" path="/main.jsp?fo=sale&amp;page=showOrder"/>
+        	<forward name="query" path="/main.jsp?fo=sale&amp;page=createOrder"/>
+        	<forward name="queryDetail" path="/main.jsp?fo=sale&amp;page=queryOrderDetail"/>
+        </action>
+        <action path="/sale/queryOrderAction" 
+        	type="com.shenming.sms.struts.action.QueryOrderAction" 
+        	name="queryOrderForm" scope="request" validate="true" 
+        	input="/sale/queryOrder.jsp">
+        	<forward name="success" path="/main.jsp?fo=sale&amp;page=queryOrder"/>
+        	<forward name="queryDetail" path="/main.jsp?fo=sale&amp;page=queryOrderDetail"/>
+        </action>
+        <action path="/sms/singleSmsSenderAction" 
+        	type="com.shenming.sms.struts.action.SingleSmsSenderAction" 
+        	name="smsSenderForm" scope="request" 
+        	validate="true" input="/sms/singleSmsSender.jsp">
+        	<forward name="success" path="/main.jsp?fo=sms&amp;page=singleSmsSender"/>
+        </action>
+        <action path="/sms/smsConfigAction" 
+        	type="com.shenming.sms.struts.action.SmsConfigAction" 
+        	name="smsSenderForm" scope="session" 
+        	validate="true" input="/sms/singleSmsConfig.jsp">
+        	<forward name="singleSmsConfig" path="/main.jsp?fo=sms&amp;page=singleSmsConfig"/>
+        </action>
+        <action path="/sms/smsBatchConfigAction" 
+        	type="com.shenming.sms.struts.action.SmsConfigAction" 
+        	name="smsSenderForm" scope="session" 
+        	validate="true" input="/sms/batchSmsConfig.jsp">
+        	<forward name="batchSmsConfig" path="/main.jsp?fo=sms&amp;page=batchSmsConfig"/>
+        </action>
+        <action path="/sms/querySmsHistory" 
+        	type="com.shenming.sms.struts.action.QuerySmsHistoryAction" 
+        	name="querySmsHistoryForm" scope="request" validate="true" 
+        	input="/sms/querySmsHistory.jsp">
+        	<forward name="querySmsHistory" path="/main.jsp?fo=sms&amp;page=querySmsHistory"/>
+        </action>
+        <action path="/manager/manageProductGrpAction" 
+        	type="com.shenming.sms.struts.action.ManageProductGrpAction" 
+        	name="manageProductGrpForm" 
+        	scope="request" 
+        	validate="true" 
+        	input="/manager/createProductGroup.jsp">
+        	<forward name="success" path="/main.jsp?page=message"/>
+        	<forward name="error" path="/main.jsp?page=message"/>
+        	<forward name="update" path="/main.jsp?fo=manager&amp;page=createProductGroup&amp;actionType=UPDATE"/>
+        </action>
+        <action path="/manager/queryProductGrpAction" 
+        	type="com.shenming.sms.struts.action.ManageProductGrpAction" 
+        	name="manageProductGrpForm" 
+        	scope="request" 
+        	validate="true" 
+        	input="/manager/queryProductGroup.jsp">
+        	<forward name="query" path="/main.jsp?fo=manager&amp;page=queryProductGroup"/>
+        	<forward name="error" path="/main.jsp?page=message"/>
+        </action>
+    </action-mappings>
+
+
+<!-- ============================================= Controller Configuration -->
+
+    <controller
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+
+<!-- ======================================== Message Resources Definitions -->
+
+    <message-resources parameter="resources.application" />
+
+
+<!-- =============================================== Plug Ins Configuration -->
+
+  <!-- ======================================================= Tiles plugin -->
+  <!--
+     This plugin initialize Tiles definition factory. This later can takes some
+	 parameters explained here after. The plugin first read parameters from
+	 web.xml, thenoverload them with parameters defined here. All parameters
+	 are optional.
+     The plugin should be declared in each struts-config file.
+       - definitions-config: (optional)
+            Specify configuration file names. There can be several comma
+		    separated file names (default: ?? )
+       - moduleAware: (optional - struts1.1)
+            Specify if the Tiles definition factory is module aware. If true
+            (default), there will be one factory for each Struts module.
+			If false, there will be one common factory for all module. In this
+            later case, it is still needed to declare one plugin per module.
+            The factory will be initialized with parameters found in the first
+            initialized plugin (generally the one associated with the default
+            module).
+			  true : One factory per module. (default)
+			  false : one single shared factory for all modules
+	   - definitions-parser-validate: (optional)
+	        Specify if xml parser should validate the Tiles configuration file.
+			  true : validate. DTD should be specified in file header (default)
+			  false : no validation
+
+	  Paths found in Tiles definitions are relative to the main context.
+  -->
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+      <!-- Path to XML definition file -->
+      <set-property property="definitions-config"
+                       value="/WEB-INF/config/tiles-defs.xml" />
+      <!-- Set Module-awareness to true -->
+      <set-property property="moduleAware" value="true" />
+    </plug-in>
+
+
+  <!-- =================================================== Validator plugin -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/WEB-INF/config/validator-rules.xml,/WEB-INF/config/validation.xml"/>
+  </plug-in>
+
+</struts-config>
+

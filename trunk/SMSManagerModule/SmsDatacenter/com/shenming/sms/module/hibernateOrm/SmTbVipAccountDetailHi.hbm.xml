@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class 
+    name="com.shenming.sms.module.hibernateOrm.SmTbVipAccountDetailHi" 
+    table="sm_tb_vip_account_detail_his"
+    lazy="false"
+>
+    <id
+        name="idx"
+        type="integer"
+        column="idx"
+        length="11"
+    >
+        <generator class="assigned" />
+    </id>
+    <property
+        name="userId"
+        type="integer"
+        column="user_id"
+        not-null="true"
+        length="11"
+    />
+    <property
+        name="vipChildBirthday"
+        type="date"
+        column="vip_child_birthday"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="vipChildName"
+        type="string"
+        column="vip_child_name"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="vipChildSex"
+        type="string"
+        column="vip_child_sex"
+        length="5"
+    />
+
+    <!-- Associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<!-- Using basic connection -->
+		<property name="hibernate.connection.url"><![CDATA[ jdbc:mysql://localhost:3306/sms?autoReconnect=true&characterEncoding=big5&useUnicode=true ]]></property>
+		<property name="hibernate.connection.username">jbossportal</property>
+		<property name="hibernate.connection.password">admin</property>
+		
+		<!-- Show SQL 
+		<property name="hibernate.show_sql">true</property>
+		-->
+		<!-- Using connection pool
+		<property name="hibernate.connection.datasource">java:comp/env/jdbc/sms</property>
+		 -->
+		<!-- 
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+		 -->
+		
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbSaleRecord.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbAccountGroup.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbSaleItem.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbAccountPay.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbTypeGrp.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbFlowerIntor.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbWeekDiscount.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbProduct.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbLeaveAttchement.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SysTbProperty.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbVipAccount.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbSaleItemLog.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbVipAccountDetail.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbAccountPrepay.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbProductGroup.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbMessageLog.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbMessageQueue.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbMessageContext.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbVipAccountDetailHi.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbSqlRule.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/SmTbHolidayConfigure.hbm.xml"/>
+		<mapping resource="com/shenming/sms/module/hibernateOrm/single/SmTbVipAccountVO.vo.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

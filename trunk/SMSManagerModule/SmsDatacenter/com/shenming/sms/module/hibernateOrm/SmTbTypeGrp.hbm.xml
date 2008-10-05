@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbTypeGrp" lazy="false" table="sm_tb_type_grp">
+	<id
+        name="prdTypeId"
+        type="integer"
+        column="prd_type_id"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="prdTypeDesc"
+        type="string"
+        column="prd_type_desc"
+        length="150"
+    />
+	<property
+        name="prdTypeDiscount"
+        type="long"
+        column="prd_type_discount"
+        length="22"
+    />
+	<property
+        name="prdTypeName"
+        type="string"
+        column="prd_type_name"
+        length="50"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbProduct -->
+	<set
+        name="smTbProducts"
+        inverse="true"
+        lazy="false"
+    >
+		<key>
+			<column name="prd_type_group_id" />
+			 <!-- a foreign key in sm_tb_product referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbProduct" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+    >
+		<column name="owner" length="11"/>
+	</many-to-one>
+
+</class>
+</hibernate-mapping>

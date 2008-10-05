@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbMessageQueue" lazy="false" table="sm_tb_message_queue">
+	<id
+        name="idx"
+        type="integer"
+        column="idx"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="createDate"
+        type="timestamp"
+        column="create_date"
+        not-null="true"
+        length="19"
+    />
+	<property
+        name="createUserId"
+        type="integer"
+        column="create_user_id"
+        length="11"
+    />
+	<property
+        name="mobile"
+        type="string"
+        column="mobile"
+        not-null="true"
+        length="20"
+    />
+	<property
+        name="recipientId"
+        type="integer"
+        column="recipient_id"
+        length="11"
+    />
+	<property
+        name="sendDate"
+        type="timestamp"
+        column="send_date"
+        length="19"
+    />
+	<property
+        name="status"
+        type="string"
+        column="status"
+        not-null="true"
+        length="20"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbMessageLog -->
+	<set
+        name="smTbMessageLogs"
+        inverse="true"
+        lazy="false"
+    >
+		<key>
+			<column name="msg_idx" />
+			 <!-- a foreign key in sm_tb_message_log referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbMessageLog" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbMessageContext -->
+	<many-to-one
+        name="smTbMessageContext"
+        class="com.shenming.sms.module.hibernateOrm.SmTbMessageContext"
+        lazy="false"
+    >
+		<column name="sms_id" length="11"/>
+	</many-to-one>
+
+</class>
+</hibernate-mapping>

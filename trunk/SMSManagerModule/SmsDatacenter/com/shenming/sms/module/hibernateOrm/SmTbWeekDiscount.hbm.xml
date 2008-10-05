@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbWeekDiscount" lazy="false" table="sm_tb_week_discount">
+	<id
+        name="disSeq"
+        type="integer"
+        column="dis_seq"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="disPrice"
+        type="long"
+        column="dis_price"
+        length="22"
+    />
+	<property
+        name="endDate"
+        type="timestamp"
+        column="end_date"
+        length="19"
+    />
+	<property
+        name="prdCurrentTotal"
+        type="long"
+        column="prd_current_total"
+        length="22"
+    />
+	<property
+        name="prdTotal"
+        type="long"
+        column="prd_total"
+        length="22"
+    />
+	<property
+        name="startDate"
+        type="timestamp"
+        column="start_date"
+        length="19"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbProduct -->
+	<many-to-one
+        name="smTbProduct"
+        class="com.shenming.sms.module.hibernateOrm.SmTbProduct"
+        lazy="false"
+    >
+		<column name="prd_id" length="11"/>
+	</many-to-one>
+
+</class>
+</hibernate-mapping>

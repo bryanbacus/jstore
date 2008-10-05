@@ -1,3 +1,0 @@
-<Context docBase="SMSManagerModule" path="/sms" reloadable="true" source="org.eclipse.jst.j2ee.server:SMSManagerModule">
-<Loader className="org.apache.catalina.loader.DevLoader" reloadable="true" debug="0"/>
-</Context>

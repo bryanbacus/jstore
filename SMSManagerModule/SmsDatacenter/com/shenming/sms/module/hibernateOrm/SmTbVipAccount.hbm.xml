@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbVipAccount" lazy="true" table="sm_tb_vip_account">
+	<id
+        name="userId"
+        type="integer"
+        column="user_id"
+        length="11"
+    >
+		<generator class="assigned">
+		</generator>
+	</id>
+	<property
+        name="address"
+        type="string"
+        column="address"
+        length="100"
+    />
+	<property
+        name="birthday"
+        type="timestamp"
+        column="birthday"
+        length="19"
+    />
+	<property
+        name="blood"
+        type="string"
+        column="blood"
+        length="10"
+    />
+	<property
+        name="buySum"
+        type="long"
+        column="buy_sum"
+        not-null="true"
+        length="22"
+    />
+	<property
+        name="crDate"
+        type="timestamp"
+        column="cr_date"
+        not-null="true"
+        length="19"
+    />
+	<property
+        name="errorCnt"
+        type="integer"
+        column="error_cnt"
+        length="2"
+    />
+	<property
+        name="fovarite"
+        type="string"
+        column="fovarite"
+        length="200"
+    />
+	<property
+        name="isAccountActive"
+        type="string"
+        column="is_account_active"
+        not-null="true"
+        length="1"
+    />
+	<property
+        name="isValidVip"
+        type="string"
+        column="is_valid_vip"
+        not-null="true"
+        length="1"
+    />
+	<property
+        name="job"
+        type="string"
+        column="job"
+        length="100"
+    />
+	<property
+        name="mailAddr"
+        type="string"
+        column="mail_addr"
+        not-null="true"
+        length="100"
+    />
+	<property
+        name="marrage"
+        type="string"
+        column="marrage"
+        length="10"
+    />
+	<property
+        name="mobile"
+        type="string"
+        column="mobile"
+        length="20"
+    />
+	<property
+        name="password"
+        type="string"
+        column="password"
+        not-null="true"
+        length="200"
+    />
+	<property
+        name="phone"
+        type="string"
+        column="phone"
+        length="20"
+    />
+	<property
+        name="sex"
+        type="string"
+        column="sex"
+        length="10"
+    />
+	<property
+        name="username"
+        type="string"
+        column="username"
+        not-null="true"
+        unique="true"
+        length="50"
+    />
+	<property
+        name="vipChtName"
+        type="string"
+        column="vip_cht_name"
+        not-null="true"
+        length="50"
+    />
+	<property
+        name="vipEngName"
+        type="string"
+        column="vip_eng_name"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="sid"
+        type="string"
+        column="sid"
+        length="10"
+    />
+    <property
+        name="store"
+        type="string"
+        column="store"
+        length="50"
+    />
+    <property
+        name="storeEmployeeName"
+        type="string"
+        column="store_employee_name"
+        length="50"
+    />
+    <property
+        name="vipLevel"
+        type="string"
+        column="vip_level"
+        length="5"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbAccountGroup -->
+	<set name="smTbAccountGroups" fetch="join" inverse="true" lazy="true">
+		<key>
+			<column name="user_id" />
+			<!-- a foreign key in sm_tb_account_group referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbAccountGroup" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbAccountPrepay -->
+	<set name="smTbAccountPrepays1" inverse="true" lazy="true">
+		<key>
+			<column name="user_id" />
+			<!-- a foreign key in sm_tb_account_prepay referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbAccountPrepay" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbAccountPrepay -->
+	<set name="smTbAccountPrepays2" inverse="true" lazy="true">
+		<key>
+			<column name="create_user" />
+			<!-- a foreign key in sm_tb_account_prepay referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbAccountPrepay" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbAccountPrepay -->
+	<set name="smTbAccountPrepays3" inverse="true" lazy="true">
+		<key>
+			<column name="modify_user" />
+			<!-- a foreign key in sm_tb_account_prepay referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbAccountPrepay" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbProduct -->
+	<set name="smTbProducts" inverse="true" lazy="true">
+		<key>
+			<column name="owner" />
+			<!-- a foreign key in sm_tb_product referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbProduct" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbProductGroup -->
+	<set name="smTbProductGroups" inverse="true" lazy="true">
+		<key>
+			<column name="owner" />
+			<!-- a foreign key in sm_tb_product_group referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbProductGroup" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbSaleItem -->
+	<set name="smTbSaleItems1" inverse="true" lazy="true">
+		<key>
+			<column name="sale_id" />
+			<!-- a foreign key in sm_tb_sale_item referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbSaleItem" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbSaleItem -->
+	<set name="smTbSaleItems2" inverse="true" lazy="true">
+		<key>
+			<column name="vip_id" />
+			<!-- a foreign key in sm_tb_sale_item referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbSaleItem" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbSaleRecord -->
+	<set name="smTbSaleRecords1" cascade="none" inverse="true" lazy="true">
+		<key>
+			<column name="sales_id" />
+			<!-- a foreign key in sm_tb_sale_record referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbSaleRecord" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbSaleRecord -->
+	<set name="smTbSaleRecords2" inverse="true" lazy="true">
+		<key>
+			<column name="vip_id" />
+			<!-- a foreign key in sm_tb_sale_record referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbSaleRecord" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+        fetch="join"
+    >
+		<column name="owner" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<set name="smTbVipAccounts" inverse="true" lazy="true">
+		<key>
+			<column name="owner" />
+			<!-- a foreign key in sm_tb_vip_account referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbVipAccountDetail -->
+	<set name="smTbVipAccountDetails" cascade="all" inverse="true" lazy="true">
+		<key>
+			<column name="user_id" />
+			<!-- a foreign key in sm_tb_vip_account_detail referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbVipAccountDetail" />
+	</set>
+
+</class>
+</hibernate-mapping>

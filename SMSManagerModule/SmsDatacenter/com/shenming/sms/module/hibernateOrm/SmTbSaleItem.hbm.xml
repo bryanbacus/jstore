@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbSaleItem" lazy="false" table="sm_tb_sale_item">
+	<id
+        name="itemSeq"
+        type="integer"
+        column="item_seq"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="count"
+        type="long"
+        column="count"
+        not-null="true"
+        length="22"
+    />
+	<property
+        name="crDate"
+        type="timestamp"
+        column="cr_date"
+        length="19"
+    />
+	<property
+        name="isClose"
+        type="string"
+        column="is_close"
+        length="2"
+    />
+	<property
+        name="log"
+        type="string"
+        column="log"
+        length="200"
+    />
+	<property
+        name="prdDiscountPrice"
+        type="long"
+        column="prd_discount_price"
+        length="22"
+    />
+	<property
+        name="prdUnitPrice"
+        type="long"
+        column="prd_unit_price"
+        length="22"
+    />
+	<property
+        name="updDate"
+        type="timestamp"
+        column="upd_date"
+        length="19"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount1"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+    >
+		<column name="sale_id" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbProduct -->
+	<many-to-one
+        name="smTbProduct"
+        class="com.shenming.sms.module.hibernateOrm.SmTbProduct"
+        lazy="false"
+    >
+		<column name="prd_id" not-null="true" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbSaleRecord -->
+	<many-to-one
+        name="smTbSaleRecord"
+        class="com.shenming.sms.module.hibernateOrm.SmTbSaleRecord"
+        lazy="false"
+    >
+		<column name="sale_seq" not-null="true" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount2"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+    >
+		<column name="vip_id" length="11"/>
+	</many-to-one>
+
+</class>
+</hibernate-mapping>

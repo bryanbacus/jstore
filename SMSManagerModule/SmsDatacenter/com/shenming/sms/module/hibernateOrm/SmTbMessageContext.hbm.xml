@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbMessageContext" lazy="false" table="sm_tb_message_context">
+	<id
+        name="smsId"
+        type="integer"
+        column="sms_id"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="createDate"
+        type="timestamp"
+        column="create_date"
+        length="19"
+    />
+	<property
+        name="createUserId"
+        type="integer"
+        column="create_user_id"
+        length="11"
+    />
+	<property
+        name="smsContext"
+        type="string"
+        column="sms_context"
+        not-null="true"
+        length="400"
+    />
+	<property
+        name="smsTitle"
+        type="string"
+        column="sms_title"
+        not-null="true"
+        length="100"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbMessageQueue -->
+	<set
+        name="smTbMessageQueues"
+        inverse="true"
+        lazy="false"
+    >
+		<key>
+			<column name="sms_id" />
+			 <!-- a foreign key in sm_tb_message_queue referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbMessageQueue" />
+	</set>
+
+</class>
+</hibernate-mapping>

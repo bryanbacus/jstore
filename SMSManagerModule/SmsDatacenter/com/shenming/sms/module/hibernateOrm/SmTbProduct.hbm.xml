@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbProduct" lazy="false" table="sm_tb_product">
+	<id
+        name="prdId"
+        type="integer"
+        column="prd_id"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="detailDesc"
+        type="string"
+        column="detail_desc"
+        length="200"
+    />
+	<property
+        name="formatDesc"
+        type="string"
+        column="format_desc"
+        length="150"
+    />
+	<property
+        name="name"
+        type="string"
+        column="name"
+        length="50"
+    />
+	<property
+        name="prdPicFile"
+        type="string"
+        column="prd_pic_file"
+        length="200"
+    />
+	<property
+        name="price"
+        type="long"
+        column="price"
+        length="22"
+    />
+	<property
+        name="priceVip"
+        type="long"
+        column="price_vip"
+        length="22"
+    />
+	<property
+        name="sendArea"
+        type="string"
+        column="send_area"
+        length="50"
+    />
+	<property
+        name="sendDesc"
+        type="string"
+        column="send_desc"
+        length="200"
+    />
+	<property
+        name="suplyStatus"
+        type="string"
+        column="suply_status"
+        not-null="true"
+        length="2"
+    />
+
+	<!-- Associations -->
+	<!-- bi-directional many-to-one association to SmTbVipAccount -->
+	<many-to-one
+        name="smTbVipAccount"
+        class="com.shenming.sms.module.hibernateOrm.SmTbVipAccount"
+        lazy="false"
+    >
+		<column name="owner" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbProductGroup -->
+	<many-to-one
+        name="smTbProductGroup"
+        class="com.shenming.sms.module.hibernateOrm.SmTbProductGroup"
+        lazy="false"
+    >
+		<column name="prd_group_id" not-null="true" length="11"/>
+	</many-to-one>
+	<!-- bi-directional many-to-one association to SmTbSaleItem -->
+	<set
+        name="smTbSaleItems"
+        inverse="true"
+        lazy="false"
+    >
+		<key>
+			<column name="prd_id" />
+			 <!-- a foreign key in sm_tb_sale_item referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbSaleItem" />
+	</set>
+	<!-- bi-directional many-to-one association to SmTbWeekDiscount -->
+	<set
+        name="smTbWeekDiscounts"
+        inverse="true"
+        lazy="false"
+    >
+		<key>
+			<column name="prd_id" />
+			 <!-- a foreign key in sm_tb_week_discount referencing the primary key of this table. -->
+		</key>
+		<one-to-many class="com.shenming.sms.module.hibernateOrm.SmTbWeekDiscount" />
+	</set>
+
+</class>
+</hibernate-mapping>

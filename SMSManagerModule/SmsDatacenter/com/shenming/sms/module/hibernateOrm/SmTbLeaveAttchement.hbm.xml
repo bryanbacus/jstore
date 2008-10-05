@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.shenming.sms.module.hibernateOrm.SmTbLeaveAttchement" lazy="false" table="sm_tb_leave_attchement">
+	<id
+        name="applyId"
+        type="integer"
+        column="apply_id"
+        length="11"
+    >
+		<generator class="identity" />
+	</id>
+	<property
+        name="createDate"
+        type="date"
+        column="create_date"
+        length="10"
+    />
+	<property
+        name="description"
+        type="string"
+        column="description"
+        length="256"
+    />
+	<property
+        name="fileName"
+        type="string"
+        column="file_name"
+        length="32"
+    />
+	<property
+        name="filePath"
+        type="string"
+        column="file_path"
+        length="256"
+    />
+
+	<!-- Associations -->
+
+</class>
+</hibernate-mapping>
